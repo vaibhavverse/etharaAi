@@ -9,10 +9,7 @@ import { config } from "./config/index.js";
 
 const app = express();
 
-// Security Middleware
-app.use(helmet());
-
-// CORS Configuration
+// CORS Configuration - Must be the FIRST middleware
 const corsOptions = {
   origin: (origin, callback) => {
     const allowed = (config.corsOrigin || "*").split(",");
@@ -30,6 +27,11 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
+
+// Security Middleware - Disabled crossOriginResourcePolicy to prevent interference with CORS
+app.use(helmet({
+  crossOriginResourcePolicy: false,
+}));
 // Body Parsers
 app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
@@ -56,13 +58,19 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/projects", projectRouter);
 app.use("/api/v1/tasks", taskRouter);
 
-// Health Check
+// Health Check & Base Route
+app.get("/", (req, res) => {
+  res.status(200).json({ status: "ok", message: "EtharaAI API is live" });
+});
+
 app.get("/health", (req, res) => {
   res.status(200).json({
     status: "ok",
     message: "Server is running smoothly",
   });
 });
+
+console.log("CORS Configured with origin:", config.corsOrigin);
 
 // Global Error Handler
 app.use(errorHandler);
