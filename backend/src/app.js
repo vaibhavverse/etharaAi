@@ -9,22 +9,18 @@ import { config } from "./config/index.js";
 
 const app = express();
 
-// Security Middleware
-app.use(helmet());
-
-// CORS Configuration
-const allowedOrigins = config.corsOrigin === "*"
-  ? true
-  : config.corsOrigin.split(",").map((o) => o.trim());
-
+// CORS Configuration - Must be before other middlewares
 app.use(
   cors({
-    origin: allowedOrigins,
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    origin: config.corsOrigin === "*" ? true : config.corsOrigin.split(",").map((o) => o.trim()),
     credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept"],
   })
 );
+
+// Security Middleware
+app.use(helmet());
 
 // Body Parsers
 app.use(express.json({ limit: "16kb" }));
