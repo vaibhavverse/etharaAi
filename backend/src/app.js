@@ -9,19 +9,27 @@ import { config } from "./config/index.js";
 
 const app = express();
 
-// CORS Configuration - Must be before other middlewares
-app.use(
-  cors({
-    origin: config.corsOrigin === "*" ? true : config.corsOrigin.split(",").map((o) => o.trim()),
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept"],
-  })
-);
-
 // Security Middleware
 app.use(helmet());
 
+// CORS Configuration
+const corsOptions = {
+  origin: (origin, callback) => {
+    const allowed = (config.corsOrigin || "*").split(",");
+    if (!origin || allowed.includes("*") || allowed.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept"],
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 // Body Parsers
 app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
