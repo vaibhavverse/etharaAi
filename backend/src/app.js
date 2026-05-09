@@ -26,7 +26,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
+// Handle preflight for all routes (Express 5 syntax)
+app.options("/(.*)", cors(corsOptions));
 
 // Security Middleware - Disabled crossOriginResourcePolicy to prevent interference with CORS
 app.use(helmet({
