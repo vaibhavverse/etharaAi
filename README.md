@@ -1,108 +1,137 @@
-# 🚀 TeamPilot | Modern Team Task Management SaaS
+<div align="center">
 
-TeamPilot is a high-performance, collaborative task management platform designed for fast-moving teams. Built with a focus on premium user experience, security, and scalability, it provides a seamless workflow for project organization and team collaboration.
+# 🚀 TeamPilot
+### *Next-Gen Team Collaboration & Task Management*
 
-![TeamPilot Landing Page](https://via.placeholder.com/1200x600/000000/FFFFFF?text=TeamPilot+Dashboard)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![Node](https://img.shields.io/badge/Node.js-22-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![Tailwind](https://img.shields.io/badge/Tailwind-4.0-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/License-ISC-blue.svg?style=for-the-badge)](https://opensource.org/licenses/ISC)
 
-## ✨ Features
+**TeamPilot** is a high-performance, collaborative task management SaaS designed for fast-moving teams. Built with a focus on premium user experience, security, and scalability.
 
-- **📊 Dynamic Kanban Boards**: Drag-and-drop task management with real-time status updates.
-- **🛡️ Advanced RBAC**: Role-Based Access Control (Admin/Member) scoped per project.
-- **📈 Insightful Dashboard**: Real-time project statistics, task distribution, and completion rates.
-- **🔐 Secure Authentication**: JWT-based auth with protected routes and persistent sessions.
-- **👥 Team Collaboration**: Invite members to projects, assign tasks, and track progress together.
-- **📱 Responsive Design**: Fully optimized for mobile, tablet, and desktop views.
-- **🎨 Premium UI**: Dark-mode-first aesthetic with glassmorphism and smooth Framer Motion animations.
+[Explore Demo](https://teampilot.com) · [Report Bug](https://github.com/vaibhavverse/etharaAi/issues) · [Request Feature](https://github.com/vaibhavverse/etharaAi/issues)
 
-## 🛠️ Tech Stack
-
-### Frontend
-- **React 19** + **Vite 8**
-- **Tailwind CSS 4.0** (Modern utility-first styling)
-- **Framer Motion** (High-end animations)
-- **React Query** (Server state management)
-- **Zustand** (Global state management)
-- **Lucide React** (Beautiful iconography)
-
-### Backend
-- **Node.js** + **Express 5.2** (Native async support & improved routing)
-- **MongoDB Atlas** + **Mongoose** (Database & ODM)
-- **JSON Web Tokens (JWT)** (Secure authentication)
-- **Zod** (Schema validation)
-- **Bcrypt.js** (Password hashing)
-- **Morgan & Winston** (Logging)
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js (v18 or higher)
-- MongoDB Atlas account or local MongoDB instance
-
-### 1. Clone the repository
-```bash
-git clone https://github.com/vaibhavverse/etharaAi.git
-cd etharaAi
-```
-
-### 2. Backend Setup
-```bash
-cd backend
-npm install
-```
-Create a `.env` file in the `backend` directory:
-```env
-PORT=5000
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_key
-JWT_EXPIRES_IN=7d
-NODE_ENV=development
-CORS_ORIGIN=http://localhost:5173
-```
-Run the backend:
-```bash
-npm run dev
-```
-
-### 3. Frontend Setup
-```bash
-cd ../frontend
-npm install
-```
-Create a `.env` file in the `frontend` directory:
-```env
-VITE_API_URL=http://localhost:5000/api/v1
-```
-Run the frontend:
-```bash
-npm run dev
-```
-
-## 🛤️ API Endpoints
-
-### Auth
-- `POST /api/v1/auth/register` - Register a new user
-- `POST /api/v1/auth/login` - Login and receive JWT
-- `POST /api/v1/auth/logout` - Clear session
-- `GET /api/v1/auth/me` - Get current user profile
-
-### Projects
-- `GET /api/v1/projects` - Get all projects for user
-- `POST /api/v1/projects` - Create a new project
-- `GET /api/v1/projects/:id` - Get project details (RBAC)
-- `PATCH /api/v1/projects/:id` - Update project (Admin only)
-- `DELETE /api/v1/projects/:id` - Delete project (Admin only)
-- `POST /api/v1/projects/:id/members/add` - Add member to project
-
-### Tasks
-- `GET /api/v1/tasks/project/:projectId` - Get tasks by project
-- `POST /api/v1/tasks` - Create a task
-- `PATCH /api/v1/tasks/:id` - Update task status/details
-- `DELETE /api/v1/tasks/:id` - Delete task
-
-## 📝 License
-
-This project is licensed under the ISC License.
+</div>
 
 ---
 
-Built with ❤️ by [Vaibhav](https://github.com/vaibhavverse)
+## 💎 Features at a Glance
+
+<details open>
+<summary><b>Click to expand features</b></summary>
+
+- **📊 Dynamic Kanban Boards**: Drag-and-drop task management with real-time status updates.
+- **🛡️ Project-Scoped RBAC**: Advanced Role-Based Access Control (Admin/Member) scoped per project.
+- **📈 Insightful Dashboard**: Real-time project statistics, task distribution, and completion rates.
+- **🔐 Secure Authentication**: JWT-based auth with protected routes and persistent sessions.
+- **👥 Team Collaboration**: Invite members to projects, assign tasks, and track progress together.
+- **🎨 Premium UI**: Dark-mode-first aesthetic with glassmorphism and smooth Framer Motion animations.
+</details>
+
+---
+
+## 📂 Project Structure
+
+```text
+TeamPilot/
+├── backend/
+│   ├── src/
+│   │   ├── app.js             # Express app configuration & middleware
+│   │   ├── server.js          # Server entry point & DB connection
+│   │   ├── config/            # Environment & database config
+│   │   ├── controllers/       # Request handlers (logic)
+│   │   ├── middlewares/       # Auth, error, and validation guards
+│   │   ├── models/            # Mongoose schemas (User, Project, Task)
+│   │   ├── routes/            # API endpoint definitions
+│   │   ├── services/          # Business logic layer
+│   │   ├── utils/             # Helper functions (ApiError, asyncHandler)
+│   │   └── validation/        # Zod schemas for input validation
+│   └── .env                   # Backend environment variables
+├── frontend/
+│   ├── src/
+│   │   ├── components/        # Reusable UI & Layout components
+│   │   ├── lib/               # Axios instance & utility functions
+│   │   ├── pages/             # Page views (Dashboard, Login, Register)
+│   │   ├── store/             # Zustand state management
+│   │   ├── App.jsx            # Root component & routing
+│   │   └── main.jsx           # React entry point
+│   ├── index.html             # Main HTML template
+│   └── .env                   # Frontend environment variables
+└── README.md                  # You are here!
+```
+
+---
+
+## 🔐 Role-Based Access Control (RBAC)
+
+TeamPilot implements a strict, project-scoped permission system to ensure data security and clear team boundaries.
+
+### 👑 Admin
+- [x] Create / Edit / Delete Projects
+- [x] Add / Remove Members from Projects
+- [x] Create / Edit / Delete Tasks
+- [x] Assign Tasks to Members
+- [x] View all Projects & Tasks
+- [x] Manage User Roles within the Project
+
+### 👤 Member
+- [x] View Projects they belong to
+- [x] View Tasks assigned to them
+- [x] Update status of their own tasks (Drag & Drop)
+- [x] Collaborative updates in real-time
+
+---
+
+## 🛠️ Technical Stack
+
+### 💻 Frontend
+- **Framework**: React 19 (Latest)
+- **Styling**: Tailwind CSS 4.0 + Framer Motion
+- **State**: Zustand (Global) + React Query (Server)
+- **Icons**: Lucide React
+
+### ⚙️ Backend
+- **Engine**: Node.js + Express 5.2 (Native async support)
+- **Database**: MongoDB Atlas + Mongoose
+- **Validation**: Zod (Type-safe schemas)
+- **Security**: JWT + Bcryptjs + Helmet
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone & Install
+```bash
+git clone https://github.com/vaibhavverse/etharaAi.git
+cd etharaAi
+
+# Install Backend
+cd backend && npm install
+
+# Install Frontend
+cd ../frontend && npm install
+```
+
+### 2️⃣ Environment Setup
+Create `.env` files in both `frontend/` and `backend/` directories as per the provided `.env.example` (or use the templates in the README above).
+
+### 3️⃣ Launch
+```bash
+# Start Backend (from /backend)
+npm run dev
+
+# Start Frontend (from /frontend)
+npm run dev
+```
+
+---
+
+<div align="center">
+
+### Built with ❤️ for High-Performing Teams
+
+[Website](https://teampilot.com) · [Support](mailto:support@teampilot.com) · [Twitter](https://twitter.com/teampilot)
+
+</div>
