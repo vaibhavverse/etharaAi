@@ -49,21 +49,28 @@ export const removeMember = asyncHandler(async (req, res) => {
 export const getDashboardStats = asyncHandler(async (req, res) => {
   const userId = req.user._id;
 
-  // Get all projects accessible by the user
+  // Get all projects where the user is either the owner or a member
   const projects = await Project.find({
-    "members.user": userId,
+    $or: [{ ownerId: userId }, { "members.user": userId }],
   });
 
-  const adminProjectIds = projects
-    .filter((p) => p.members.find((m) => m.user.toString() === userId.toString())?.role === "admin")
-    .map((p) => p._id);
+  const adminProjectIds = [];
+  const memberProjectIds = [];
 
-  const memberProjectIds = projects
-    .filter((p) => p.members.find((m) => m.user.toString() === userId.toString())?.role === "member")
-    .map((p) => p._id);
+  projects.forEach((p) => {
+    const memberRecord = p.members.find((m) => m.user.toString() === userId.toString());
+    const isOwner = p.ownerId.toString() === userId.toString();
+    
+    if (isOwner || memberRecord?.role === "admin") {
+      adminProjectIds.push(p._id);
+    } else if (memberRecord?.role === "member") {
+      memberProjectIds.push(p._id);
+    }
+  });
 
   // Define task query based on project-scoped roles
-  let taskQuery = {
+  // Admins see all tasks in their projects, members only see assigned tasks
+  const taskQuery = {
     $or: [
       { projectId: { $in: adminProjectIds } },
       { projectId: { $in: memberProjectIds }, assigneeId: userId },
@@ -94,3 +101,4 @@ export const getDashboardStats = asyncHandler(async (req, res) => {
 
   return res.status(200).json(new ApiResponse(200, stats, "Dashboard stats fetched successfully"));
 });
+

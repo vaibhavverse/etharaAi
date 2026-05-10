@@ -341,8 +341,10 @@ const KanbanBoard = () => {
   }, [tasks]);
 
   const userProjectRole = project?.members?.find(m => (m.user?._id || m.user) === user?._id)?.role;
-  const isProjectAdmin = userProjectRole === "admin";
+  const isOwner = project?.ownerId === user?._id || project?.ownerId?._id === user?._id;
+  const isProjectAdmin = isOwner || userProjectRole === "admin";
   const canManageTasks = isProjectAdmin;
+
 
   const projectMembers = (project?.members || []).map(m => m.user);
 

@@ -31,11 +31,13 @@ export const getTasksByProject = async (projectId, user) => {
   const project = await Project.findById(projectId);
   if (!project) throw new ApiError(404, "Project not found");
 
-  const userRole = project.members.find(m => m.user.toString() === user._id.toString())?.role;
-  const isOwnerOrAdmin = project.ownerId.toString() === user._id.toString() || userRole === "admin";
+  const memberRecord = project.members.find(m => m.user.toString() === user._id.toString());
+  const isOwner = project.ownerId.toString() === user._id.toString();
+  const isOwnerOrAdmin = isOwner || memberRecord?.role === "admin";
 
   let query = { projectId };
-  if (!isOwnerOrAdmin && userRole === "member") {
+  // If user is just a member, only show tasks assigned to them
+  if (!isOwnerOrAdmin && memberRecord?.role === "member") {
     query.assigneeId = user._id;
   }
 
@@ -43,6 +45,7 @@ export const getTasksByProject = async (projectId, user) => {
     .sort({ order: 1, createdAt: -1 })
     .populate("assigneeId", "name email avatarUrl");
 };
+
 
 export const updateTask = async (taskId, updateData, user) => {
   const task = await Task.findById(taskId);
