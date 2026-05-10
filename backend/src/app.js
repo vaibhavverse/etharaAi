@@ -12,7 +12,7 @@ const app = express();
 // CORS Configuration - Must be the FIRST middleware
 const corsOptions = {
   origin: (origin, callback) => {
-    const allowed = (config.corsOrigin || "*").split(",");
+    const allowed = config.corsOrigin || ["*"];
     if (!origin || allowed.includes("*") || allowed.includes(origin)) {
       callback(null, true);
     } else {
@@ -26,8 +26,9 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-// Handle preflight for all routes (Express 5 syntax)
-app.options("/(.*)", cors(corsOptions));
+// Handle preflight for all routes (Express 5 syntax requires regex or named params)
+app.options(/.*/, cors(corsOptions));
+
 
 // Security Middleware - Disabled crossOriginResourcePolicy to prevent interference with CORS
 app.use(helmet({
