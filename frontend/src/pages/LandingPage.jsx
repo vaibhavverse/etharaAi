@@ -14,7 +14,7 @@ const features = [
 ];
 
 const stats = [
-  { value: "10k+", label: "Teams using EtharaAI" },
+  { value: "10k+", label: "Teams using TeamPilot" },
   { value: "500k+", label: "Tasks completed" },
   { value: "99.9%", label: "Uptime SLA" },
   { value: "< 200ms", label: "API response time" },
@@ -38,7 +38,7 @@ const LandingPage = () => {
             <div className="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center">
               <CheckSquare className="w-4 h-4 text-white" />
             </div>
-            <span className="text-lg font-bold tracking-tight">EtharaAI</span>
+            <span className="text-lg font-bold tracking-tight">TeamPilot</span>
           </div>
           <div className="flex items-center gap-3">
             <Link to="/login">
@@ -85,7 +85,7 @@ const LandingPage = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
           >
-            EtharaAI is the task management platform built for teams who want
+            TeamPilot is the task management platform built for teams who want
             clarity, speed, and beautiful design — all in one tool.
           </motion.p>
 
@@ -131,7 +131,7 @@ const LandingPage = () => {
               <div className="w-3 h-3 rounded-full bg-green-500/70" />
               <div className="ml-4 flex-1 max-w-xs">
                 <div className="h-5 bg-white/5 rounded-full text-xs text-zinc-600 flex items-center px-3">
-                  app.etharaai.com
+                  app.teampilot.com
                 </div>
               </div>
             </div>
@@ -239,7 +239,7 @@ const LandingPage = () => {
             <div className="relative">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to get started?</h2>
               <p className="text-zinc-400 mb-8 max-w-xl mx-auto">
-                Join thousands of teams already using EtharaAI to ship faster and work smarter.
+                Join thousands of teams already using TeamPilot to ship faster and work smarter.
               </p>
               <Link to="/register">
                 <Button
@@ -260,7 +260,7 @@ const LandingPage = () => {
               <div className="w-5 h-5 bg-indigo-500 rounded-md flex items-center justify-center">
                 <CheckSquare className="w-3 h-3 text-white" />
               </div>
-              <span>EtharaAI © 2026</span>
+              <span>TeamPilot © 2026</span>
             </div>
             <div className="flex gap-6">
               <span className="hover:text-zinc-400 cursor-pointer transition-colors">Privacy</span>

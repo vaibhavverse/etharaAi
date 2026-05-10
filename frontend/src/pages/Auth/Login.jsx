@@ -43,11 +43,11 @@ const Login = () => {
           <div className="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center">
             <CheckSquare className="w-4 h-4 text-white" />
           </div>
-          <span className="text-lg font-bold">EtharaAI</span>
+          <span className="text-lg font-bold">TeamPilot</span>
         </div>
         <div className="relative">
           <blockquote className="text-2xl font-semibold text-white/80 leading-relaxed mb-6">
-            "Our team's productivity doubled in the first month. EtharaAI just works."
+            "Our team's productivity doubled in the first month. TeamPilot just works."
           </blockquote>
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold">
@@ -74,7 +74,7 @@ const Login = () => {
             <div className="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center">
               <CheckSquare className="w-4 h-4 text-white" />
             </div>
-            <span className="text-lg font-bold">EtharaAI</span>
+            <span className="text-lg font-bold">TeamPilot</span>
           </div>
 
           <div className="mb-8">

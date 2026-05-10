@@ -68,7 +68,7 @@ const Sidebar = ({ onClose }) => {
           <div className="w-7 h-7 bg-indigo-500 rounded-lg flex items-center justify-center shrink-0">
             <CheckSquare className="w-3.5 h-3.5 text-white" />
           </div>
-          <span className="text-base font-bold tracking-tight">EtharaAI</span>
+          <span className="text-base font-bold tracking-tight">TeamPilot</span>
         </div>
         {onClose && (
           <button onClick={onClose} className="text-zinc-500 hover:text-white lg:hidden p-1 rounded-md hover:bg-white/5">

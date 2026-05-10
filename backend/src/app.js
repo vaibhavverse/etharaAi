@@ -62,7 +62,7 @@ app.use("/api/v1/tasks", taskRouter);
 
 // Health Check & Base Route
 app.get("/", (req, res) => {
-  res.status(200).json({ status: "ok", message: "EtharaAI API is live" });
+  res.status(200).json({ status: "ok", message: "TeamPilot API is live" });
 });
 
 app.get("/health", (req, res) => {
